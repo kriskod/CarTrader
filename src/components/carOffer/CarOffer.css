@@ -1,0 +1,46 @@
+.carOffer {
+  margin: 10px;
+  border: 0px solid black;
+  border-radius: 10px;
+  box-shadow: 0px 6px 18px -9px rgba(0, 0, 0, 0.7);
+  transition: transform 0.15s ease-in;
+  cursor: pointer;
+  overflow: hidden;
+}
+.carOffer:hover {
+  transform: scale(1.05);
+}
+
+.carOffer > img {
+  object-fit: fill;
+  min-width: 300px;
+  min-height: 200px;
+  width: 100%;
+}
+
+.carOffer__title {
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.carOffer__description {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.carOffer__price {
+  font-weight: 600;
+  text-align: center;
+  border-top: 1px solid lightgray;
+}
+.carOffer__price > small {
+  color: rgb(225, 193, 11);
+}
+
+.carOffer__info {
+  margin-top: -9px;
+  border-radius: 10px;
+  padding: 20px;
+  padding-top: 20px;
+  border: 1;
+}

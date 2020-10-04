@@ -1,0 +1,25 @@
+.footer {
+  border-top: 1px solid lightgray;
+}
+.footer__logo {
+  max-width: 100px;
+}
+.footer__mobile {
+  max-width: 150px;
+  cursor: pointer;
+}
+.footer__section {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.footer__section > ul > li {
+  list-style: none;
+  padding: 2px;
+}
+
+.footer__section > ul > li > span {
+  font-weight: 800;
+  font-size: 18px;
+}

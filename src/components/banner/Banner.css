@@ -1,0 +1,42 @@
+.banner {
+  height: 45vh;
+  position: relative;
+  background: url("../../assets/banner-cars.jpg") content-box;
+  /* background: url("https://www.bluechipdealers.co.za/img/carsell_banner.png"); */
+  /* background: url("https://www.cashforjunkcarscolorado.com/img/banner_home1.png"); */
+}
+
+.banner__info {
+  color: whitesmoke;
+  width: 450px;
+  padding-top: 50px;
+  position: relative;
+  margin-left: 40vw;
+  text-align: center;
+}
+
+.banner__info > button {
+  background-color: #901600;
+  color: whitesmoke;
+  font-weight: 600;
+}
+
+.banner__info > button:hover {
+  background-color: whitesmoke;
+  color: black;
+}
+
+.banner__info > h1 {
+  font-size: 36px;
+}
+.banner__search {
+  display: flex;
+  flex-direction: column;
+}
+
+.banner__filter {
+  background-color: whitesmoke !important;
+  font-weight: 900 !important;
+  text-transform: inherit !important;
+  color: #901600 !important;
+}

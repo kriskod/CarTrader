@@ -1,0 +1,43 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background-color: whitesmoke;
+  /* background-color: rgba(29, 33, 61, 0.5); */
+  z-index: 100;
+  width: 100%;
+}
+
+.header__logo {
+  width: 250px;
+  object-fit: contain;
+  padding: 20px;
+}
+
+.header__center {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: fit-content;
+  padding: 10px;
+  height: 30px;
+  border: 1px solid rgb(128, 128, 128);
+  border-radius: 999px;
+  background: white;
+}
+
+.header__center > input {
+  border: none;
+  width: 250px;
+  padding: 10px;
+  outline-width: 0; /* get rid of input outline */
+}
+.header__info {
+  display: flex;
+  align-items: center;
+  margin-right: 80px;
+  justify-content: space-between;
+  width: 240px;
+}
