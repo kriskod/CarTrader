@@ -1,0 +1,76 @@
+.searchResult {
+  display: flex;
+  position: relative;
+  margin: 20px;
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  max-width: 1000px;
+  background: whitesmoke;
+  box-shadow: 0px 6px 18px -9px rgba(0, 0, 0, 0.7);
+}
+
+.searchResult > img {
+  height: 200px;
+  width: 350px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.searchResult > img:hover {
+  opacity: 0.8;
+  transition: all 0.2s ease-in;
+}
+
+.searchResult__star {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  cursor: pointer;
+}
+.searchResult__star:hover {
+  color: #901600;
+}
+.searchResult__star_full {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  cursor: pointer;
+  color: #901600;
+}
+
+.searchResult__info > h3 {
+  margin: 10px 0 10px 10px;
+}
+.searchResult__info_main > ul {
+  display: flex;
+  width: 30vw;
+  font-size: 14px;
+  list-style: none;
+  padding: 0 0 0 15px;
+}
+
+.searchResult__info_main > ul > li {
+  margin: 0 15px 0 0;
+}
+.searchResult__info > p {
+  margin-left: 15px;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.searchResult__locationIcon {
+  position: absolute;
+  margin: 25px 5px 0 10px !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  bottom: 10px;
+}
+
+.searchResult__date {
+  position: absolute;
+  bottom: 0;
+  right: 40px;
+  font-size: 12px !important;
+  color: rgb(182, 182, 182);
+}

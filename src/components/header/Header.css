@@ -37,7 +37,7 @@
 .header__info {
   display: flex;
   align-items: center;
-  margin-right: 80px;
+  margin-right: 40px;
   justify-content: space-between;
   width: 240px;
 }

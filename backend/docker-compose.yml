@@ -1,0 +1,12 @@
+version: "3"
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+  db: "mongoDB"
+  environment:
+    MONGO_DB_PASSWORD: password
+  volumes:
+    - cartrader:/users
+    - cartrader:/cars

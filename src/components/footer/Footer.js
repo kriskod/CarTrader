@@ -40,7 +40,7 @@ function Footer() {
           </li>
           <li>+01 234 567 890</li>
           <li>help@cartrader.com</li>
-          <li>(opened at mon to fri in hours 9-16)</li>
+          <li>(from Monday to Friday, 09:00 - 17:00)</li>
           <li>GET THE MOBILE APP</li>
           <li>
             <img
