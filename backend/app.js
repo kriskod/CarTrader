@@ -6,13 +6,15 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 const carsRoutes = require("./routes/cars");
+const userRoutes = require("./routes/user");
 
 mongoose.connect(
   `mongodb+srv://admin:${process.env.PASSWORD}@cartrader-database.o6h9p.mongodb.net/<dbname>?retryWrites=true&w=majority`,
-  { useNewUrlParser: true, useUnifiedTopology: true }
+  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
 );
 
 app.use(morgan("dev"));
+app.use("/uploads", express.static("uploads"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -31,6 +33,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/cars", carsRoutes);
+app.use("/user", userRoutes);
 
 app.use((req, res, next) => {
   const error = new Error("Not found");

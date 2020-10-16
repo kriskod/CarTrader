@@ -2,17 +2,26 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const multer = require("multer");
-
+const auth = require("../middlewares/auth");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./uploads/");
   },
   filename: function (req, file, cb) {
-    cb(null, new Date().toISOString() + "_" + file.originalname);
+    cb(
+      null,
+      `${new Date().toISOString().replace(/:/g, "-")}` +
+        "_" +
+        `${file.originalname.split(" ").join("_")}`
+    );
   },
 });
 const fileFilter = (req, file, cb) => {
-  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+  if (
+    file.mimetype === "image/jpeg" ||
+    file.mimetype === "image/png" ||
+    file.mimetype === "image/jpg"
+  ) {
     cb(null, true);
   } else {
     cb(null, false);
@@ -32,7 +41,7 @@ const Car = require("../models/car");
 router.get("/", (req, res, next) => {
   Car.find()
     .select(
-      "_id brand type model price mileage year fuelType engine country image"
+      "_id brand type model price mileage year fuelType engine country carImage"
     )
     .exec()
     .then((docs) => {
@@ -50,6 +59,7 @@ router.get("/", (req, res, next) => {
             fuelType: doc.fuelType,
             engine: doc.engine,
             country: doc.country,
+            carImage: doc.carImage,
             request: {
               type: "GET",
               url: "http://localhost:5000/cars/" + doc._id,
@@ -70,7 +80,7 @@ router.get("/", (req, res, next) => {
     });
 });
 
-router.post("/", upload.single("carImage"), (req, res, next) => {
+router.post("/", auth, upload.single("carImage"), (req, res, next) => {
   console.log(req.file);
   const car = new Car({
     _id: new mongoose.Types.ObjectId(),
@@ -83,7 +93,7 @@ router.post("/", upload.single("carImage"), (req, res, next) => {
     fuelType: req.body.fuelType,
     engine: req.body.engine,
     country: req.body.country,
-    // carImage: req.file.path,
+    carImage: req.file.path,
   });
   car
     .save()
@@ -119,7 +129,7 @@ router.get("/:carId", (req, res, next) => {
   const id = req.params.carId;
   Car.findById(id)
     .select(
-      "_id brand type model price mileage year fuelType engine country image"
+      "_id brand type model price mileage year fuelType engine country carImage"
     )
     .exec()
     .then((doc) => {
@@ -142,7 +152,7 @@ router.get("/:carId", (req, res, next) => {
     });
 });
 
-router.patch("/:carId", (req, res, next) => {
+router.patch("/:carId", auth, (req, res, next) => {
   const id = req.params.carId;
   const updateObject = {};
   for (const ops of req.body) {
@@ -172,7 +182,7 @@ router.patch("/:carId", (req, res, next) => {
     });
 });
 
-router.delete("/:carId", (req, res, next) => {
+router.delete("/:carId", auth, (req, res, next) => {
   const id = req.params.carId;
   Car.remove({ _id: id })
     .exec()
