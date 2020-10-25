@@ -14,7 +14,7 @@ function SearchResult({
   fuel,
   createdAt,
 }) {
-  const [watch, setWatch] = useState(true);
+  const [watch, setWatch] = useState(false);
   return (
     <div className="searchResult">
       <img

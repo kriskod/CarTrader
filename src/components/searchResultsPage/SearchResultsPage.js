@@ -2,12 +2,21 @@ import { Button } from "@material-ui/core";
 import React from "react";
 import SearchResult from "../searchResult/SearchResult";
 import "./SearchResultsPage.css";
-function SearchResultsPage({ type, model, brand, mileage, year, price, fuel }) {
+function SearchResultsPage({
+  type,
+  model,
+  brand,
+  mileage,
+  year,
+  price,
+  fuel,
+  count,
+}) {
   return (
     <div className="searchResultsPage">
       <div className="searchResultsPage__info">
         <p>filters options choosen</p>
-        <h2>Found: 2137 results</h2>
+        <h2>Found: {count} results</h2>
         <Button variant="outlined">Type</Button>
         <Button variant="outlined">Model</Button>
         <Button variant="outlined">Brand</Button>
