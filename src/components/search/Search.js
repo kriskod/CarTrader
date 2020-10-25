@@ -1,16 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import "./Search.css";
 function Search() {
-  // const [priceFrom, setPriceFrom] = useState(0);
-  // const [priceTo, setPriceTo] = useState(0);
-  // const [mileageFrom, setMileageFrom] = useState(0);
-  // const [mileageTo, setMileageTo] = useState(0);
-  // const [yearFrom, setYearFrom] = useState(0);
-  // const [yearTo, setYearTo] = useState(0);
   const history = useHistory();
-  const [loading, setLoading] = useState(false);
   return (
     <div className="search">
       <ul className="search__options">

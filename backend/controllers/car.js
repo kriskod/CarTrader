@@ -4,7 +4,7 @@ const Car = require("../models/car");
 exports.getCars = (req, res, next) => {
   Car.find()
     .select(
-      "_id brand type model price mileage year fuelType engine country carImage"
+      "_id title description brand type model price mileage year fuelType engine country carImage"
     )
     .exec()
     .then((docs) => {
@@ -13,6 +13,8 @@ exports.getCars = (req, res, next) => {
         cars: docs.map((doc) => {
           return {
             _id: doc._id,
+            title: doc.title,
+            description: doc.description,
             brand: doc.brand,
             type: doc.type,
             model: doc.model,
@@ -47,6 +49,8 @@ exports.addCar = (req, res, next) => {
   console.log(req.file);
   const car = new Car({
     _id: new mongoose.Types.ObjectId(),
+    title: req.body.title,
+    description: req.body.description,
     brand: req.body.brand,
     type: req.body.type,
     model: req.body.model,
@@ -66,6 +70,8 @@ exports.addCar = (req, res, next) => {
         message: "Car posted successfully",
         car: {
           _id: result._id,
+          title: result.title,
+          description: result.description,
           brand: result.brand,
           type: result.type,
           model: result.model,

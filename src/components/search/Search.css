@@ -1,6 +1,6 @@
 .search {
   position: absolute;
-  width: 100vw;
+  width: 100%;
   top: 35px;
   background: rgba(29, 33, 61, 0.8) !important;
   z-index: 1;

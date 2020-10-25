@@ -20,7 +20,7 @@ function SearchResultsPage({ type, model, brand, mileage, year, price, fuel }) {
         <SearchResult
           title="Toyota Corolla, 120Hp, 2009, perfect car"
           price="12450"
-          image="https://upload.wikimedia.org/wikipedia/commons/7/7a/2009_Toyota_Corolla_LE.jpg"
+          carImage="https://upload.wikimedia.org/wikipedia/commons/7/7a/2009_Toyota_Corolla_LE.jpg"
           year="2009"
           location="Prague, Czech"
           mileage="129000 km"
@@ -31,29 +31,7 @@ function SearchResultsPage({ type, model, brand, mileage, year, price, fuel }) {
         <SearchResult
           title="Totyota Corolla, 120Hp, 2009, perfect car"
           price="12450"
-          image="https://upload.wikimedia.org/wikipedia/commons/7/7a/2009_Toyota_Corolla_LE.jpg"
-          year="2009"
-          location="Prague, Czech"
-          mileage="129000 km"
-          engine="1600cm"
-          fuel="Gas"
-          createdAt={new Date().toDateString()}
-        />
-        <SearchResult
-          title="Totyota Corolla, 120Hp, 2009, perfect car"
-          price="12450"
-          image="https://upload.wikimedia.org/wikipedia/commons/7/7a/2009_Toyota_Corolla_LE.jpg"
-          year="2009"
-          location="Prague, Czech"
-          mileage="129000 km"
-          engine="1600cm"
-          fuel="Gas"
-          createdAt={new Date().toDateString()}
-        />
-        <SearchResult
-          title="Totyota Corolla, 120Hp, 2009, perfect car"
-          price="12450"
-          image="https://upload.wikimedia.org/wikipedia/commons/7/7a/2009_Toyota_Corolla_LE.jpg"
+          carImage="https://upload.wikimedia.org/wikipedia/commons/7/7a/2009_Toyota_Corolla_LE.jpg"
           year="2009"
           location="Prague, Czech"
           mileage="129000 km"

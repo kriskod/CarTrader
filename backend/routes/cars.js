@@ -42,6 +42,7 @@ const upload = multer({
 const CarController = require("../controllers/car");
 //Routes
 router.get("/", CarController.getCars);
+// router.get("/:page", CarController.getCarsLimited);
 router.post("/", auth, upload.single("carImage"), CarController.addCar);
 router.get("/:carId", CarController.getCarById);
 router.patch("/:carId", auth, CarController.updateCar);

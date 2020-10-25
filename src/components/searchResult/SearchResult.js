@@ -6,7 +6,7 @@ import "./SearchResult.css";
 function SearchResult({
   title,
   price,
-  image,
+  carImage,
   year,
   location,
   mileage,
@@ -14,12 +14,12 @@ function SearchResult({
   fuel,
   createdAt,
 }) {
-  const [watch, setWatch] = useState([]);
+  const [watch, setWatch] = useState(true);
   return (
     <div className="searchResult">
       <img
         className="searchResult_star"
-        src={image}
+        src={carImage}
         alt="searchResult__image"
       />
       {watch ? (

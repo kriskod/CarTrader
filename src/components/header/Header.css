@@ -41,3 +41,27 @@
   justify-content: space-between;
   width: 240px;
 }
+
+.header__info > p {
+  cursor: pointer;
+}
+
+.header__info > p:hover {
+  color: #901600;
+  transform: all 0.3s ease-out;
+}
+
+.header__expand {
+  cursor: pointer;
+}
+
+.header__signup {
+  text-decoration: none;
+  color: black;
+}
+
+.header__signup:hover {
+  color: #901600;
+  transform: scale(1.05);
+  transition: all 0.3s ease-out;
+}

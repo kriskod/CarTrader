@@ -1,4 +1,13 @@
+.home {
+  background: whitesmoke;
+}
 .home__section {
+  padding: 20px;
   display: flex;
-  padding: 30px;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.home__item {
+  padding: 20px;
 }

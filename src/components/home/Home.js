@@ -1,51 +1,103 @@
-import React from "react";
+import Axios from "axios";
+import React, { useEffect, useState } from "react";
 import Banner from "../banner/Banner";
 import CarOffer from "../carOffer/CarOffer";
 import "./Home.css";
 
 function Home() {
+  const [cars, setCars] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await Axios.get("http://localhost:5000/cars", {
+        params: {
+          _limit: 10,
+        },
+      });
+      setCars(data.cars);
+      console.log(data.cars);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="home">
       <Banner />
       <div className="home__section">
-        <CarOffer
-          image="https://specials-images.forbesimg.com/imageserve/5d3703e2f1176b00089761a6/960x0.jpg?cropX1=836&cropX2=5396&cropY1=799&cropY2=3364"
-          title="Corvette very fast"
-          description="super fast car, 454 hp, 5,7 litre v8 wow"
-          price="115,500"
-        />
-        <CarOffer
-          image="https://specials-images.forbesimg.com/imageserve/5d3703e2f1176b00089761a6/960x0.jpg?cropX1=836&cropX2=5396&cropY1=799&cropY2=3364"
-          title="Corvette very fast"
-          description="super fast car, 454 hp, 5,7 litre v8 wow"
-          price="115,500"
-        />
-        <CarOffer
-          image="https://specials-images.forbesimg.com/imageserve/5d3703e2f1176b00089761a6/960x0.jpg?cropX1=836&cropX2=5396&cropY1=799&cropY2=3364"
-          title="Corvette very fast"
-          description="super fast car, 454 hp, 5,7 litre v8 wow"
-          price="115,500"
-        />
-      </div>
-      <div className="home__section">
-        <CarOffer
-          image="https://specials-images.forbesimg.com/imageserve/5d3703e2f1176b00089761a6/960x0.jpg?cropX1=836&cropX2=5396&cropY1=799&cropY2=3364"
-          title="Corvette very fast"
-          description="super fast car, 454 hp, 5,7 litre v8 wow"
-          price="115,500"
-        />
-        <CarOffer
-          image="https://specials-images.forbesimg.com/imageserve/5d3703e2f1176b00089761a6/960x0.jpg?cropX1=836&cropX2=5396&cropY1=799&cropY2=3364"
-          title="Corvette very fast"
-          description="super fast car, 454 hp, 5,7 litre v8 wow"
-          price="115,500"
-        />
-        <CarOffer
-          image="https://specials-images.forbesimg.com/imageserve/5d3703e2f1176b00089761a6/960x0.jpg?cropX1=836&cropX2=5396&cropY1=799&cropY2=3364"
-          title="Corvette very fast"
-          description="super fast car, 454 hp, 5,7 litre v8 wow"
-          price="115,500"
-        />
+        <div className="home__item">
+          <CarOffer
+            image="https://image.ceneostatic.pl/data/products/74843015/i-ferrari-488-spider.jpg"
+            title="ferrari, 5.8 V8, skóra fura i komura"
+            year="2018"
+            mileage="1000"
+            fuel="Gas"
+            engine="5800"
+            price="5555555"
+          />
+        </div>
+        <div className="home__item">
+          <CarOffer
+            image="https://image.ceneostatic.pl/data/products/74843015/i-ferrari-488-spider.jpg"
+            title="Ferrari Italia, 5.8 V8, skóra fura i komura"
+            year="2018"
+            mileage="1000"
+            fuel="Gas"
+            engine="5800"
+            price="5555555"
+          />
+        </div>
+        <div className="home__item">
+          <CarOffer
+            image="https://image.ceneostatic.pl/data/products/74843015/i-ferrari-488-spider.jpg"
+            title="Ferrari Italia, 5.8 V8, skóra fura i komura"
+            year="2018"
+            mileage="1000"
+            fuel="Gas"
+            engine="5800"
+            price="5555555"
+          />
+        </div>
+        <div className="home__item">
+          <CarOffer
+            key="dupa"
+            image="https://image.ceneostatic.pl/data/products/74843015/i-ferrari-488-spider.jpg"
+            title="Ferrari Italia, 5.8 V8, skóra fura i komura dupa"
+            year="2018"
+            mileage="1000"
+            fuel="Gas"
+            engine="5800"
+            price="5555555"
+          />
+        </div>
+        <div className="home__item">
+          <CarOffer
+            key="dupa"
+            image="https://image.ceneostatic.pl/data/products/74843015/i-ferrari-488-spider.jpg"
+            title="Ferrari Italia, 5.8 V8, skóra fura i komura"
+            year="2018"
+            mileage="1000"
+            fuel="Gas"
+            engine="5800"
+            price="5555555"
+          />
+        </div>
+
+        {cars.map((car) => (
+          <div className="home__item">
+            <CarOffer
+              key={car._id}
+              image={car.carImage}
+              title={car.title}
+              year={car.year}
+              mileage={car.mileage}
+              fuel={car.fuelType}
+              engine={car.engine}
+              title={car.title}
+              price={car.price}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );

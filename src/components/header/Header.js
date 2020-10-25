@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Header.css";
 import logo from "../../assets/cartrader_logo2.png";
 import SearchIcon from "@material-ui/icons/Search";
-import LanguageIcon from "@material-ui/icons/Language";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { Avatar } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 function Header() {
+  const [user, setUser] = useState("");
   return (
     <div className="header">
       <Link to="/">
@@ -19,9 +19,17 @@ function Header() {
         <SearchIcon />
       </div>
       <div className="header__info">
-        <p>Become a trader</p>
-        <LanguageIcon />
-        <ExpandMoreIcon />
+        {user ? (
+          <Link className="header__signup" to="/signup">
+            <p>{user}</p>
+          </Link>
+        ) : (
+          <Link className="header__signup" to="/signup">
+            <p>Become a trader</p>
+          </Link>
+        )}
+
+        <ExpandMoreIcon className="header__expand" />
         <Avatar />
       </div>
     </div>

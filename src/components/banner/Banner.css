@@ -1,9 +1,10 @@
 .banner {
-  height: 45vh;
+  height: 100%;
   position: relative;
-  background: url("../../assets/banner-cars.jpg") content-box;
+  background: url("../../assets/banner-cars.jpg") fixed;
   /* background: url("https://www.bluechipdealers.co.za/img/carsell_banner.png"); */
-  /* background: url("https://www.cashforjunkcarscolorado.com/img/banner_home1.png"); */
+  background-repeat: no-repeat;
+  overflow-x: hidden;
 }
 
 .banner__info {
@@ -19,6 +20,7 @@
   background-color: #901600;
   color: whitesmoke;
   font-weight: 600;
+  margin-bottom: 15px;
 }
 
 .banner__info > button:hover {
