@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongo uri here",
+  "jwtSecret": "zaq12wsxcde34rfvbgt56yhnmj7u78ik,.lo9"
+}

@@ -1,19 +1,13 @@
-FROM node:12
+FROM node:15
 
-WORKDIR /app
+RUN mkdir -p /usr/app
 
-COPY package*.json ./
+COPY . /usr/app
+
+WORKDIR /usr/app
 
 RUN npm install
 
-COPY . .
+EXPOSE 8080
 
-ENV PORT=5000
-
-EXPOSE 5000
-
-CMD ["npm", "start"]
-
-# docker build -t kriskarot/cartrader:1.0 .
-# docker run <id>
-#docker run -p 5000:8080 <id>
+CMD ["node", "index.js"]
