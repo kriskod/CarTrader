@@ -1,102 +1,48 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-require("dotenv").config();
 const User = require("../models/user");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const config = require("config");
 
-exports.signup = (req, res, next) => {
-  User.find({ email: req.body.email })
-    .exec()
-    .then((user) => {
-      if (user.length >= 1) {
-        return res.status(409).json({
-          message: "Email is already taken",
-        });
-      } else {
-        bcrypt.hash(req.body.password, 10, (err, hash) => {
-          if (err) {
-            return res.status(500).json({
-              error: err,
-            });
-          } else {
-            const user = new User({
-              _id: new mongoose.Types.ObjectId(),
-              email: req.body.email,
-              password: hash,
-            });
-            user
-              .save()
-              .then((result) => {
-                console.log(result);
-                res.status(201).json({
-                  message: "User created",
-                });
-              })
-              .catch((err) => {
-                console.log(err);
-                res.status(500).json({
-                  error: err,
-                });
-              });
-          }
-        });
-      }
+exports.signupUser = async (req, res) => {
+  const { username, email, password } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    if (user) return res.status(400).json({ message: "User aleready exist" });
+    const hashedPassword = await bcrypt.hash(password, 12);
+    const newUser = await User.create({
+      email,
+      password: hashedPassword,
+      username: username,
     });
+    const secret = config.get("jwtSecret");
+    const token = jwt.sign({ id: newUser._id, email: newUser.email }, secret, {
+      expiresIn: 30 * 60,
+    });
+    res.status(201).json({ message: "User created", user: newUser, token });
+  } catch (error) {
+    res.status(500).json({ message: error.meesage });
+  }
 };
 
-exports.login = (req, res, next) => {
-  User.find({ email: req.body.email })
-    .exec()
-    .then((user) => {
-      if (user.length < 1) {
-        return res.status(401).json({
-          message: "Authorization failed",
-        });
-      }
-      bcrypt.compare(req.body.password, user[0].password, (error, result) => {
-        if (error) {
-          return res.status(401).json({
-            message: "Authorization failed",
-          });
-        }
-        if (result) {
-          const token = jwt.sign(
-            { email: user[0].email, userId: user[0]._id },
-            process.env.JWT_KEY,
-            {
-              expiresIn: "1h",
-            }
-          );
-          return res.status(200).json({
-            message: " Authorization successfull",
-            token: token,
-          });
-        }
-        res.status(401).json({
-          message: "Authorization failed",
-        });
+exports.loginUser = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res
+        .status(404)
+        .json({ message: "User with given email doesn't exist" });
+    } else {
+      const matchPasswords = await bcrypt.compare(password, user.password);
+      if (!matchPasswords)
+        return res.status(400).json({ message: "Invalid password" });
+      const secret = config.get("jwtSecret");
+      const token = jwt.sign({ email: user.email, id: user._id }, secret, {
+        expiresIn: 30 * 60,
       });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({
-        error: err,
-      });
-    });
-};
-
-exports.deleteUser = (req, res, next) => {
-  User.remove({ _id: req.params.userId })
-    .exec()
-    .then((result) => {
-      res.status(200).json({
-        message: "User deleted",
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({
-        error: err,
-      });
-    });
+      res.status(200).json({ message: "User logged in", user: user, token });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.meesage });
+  }
 };
