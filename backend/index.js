@@ -10,6 +10,7 @@ const userRoutes = require("./routes/user");
 const app = express();
 const port = process.env.PORT || 5000;
 
+// Middlewares
 app.use(morgan("dev"));
 app.use(bodyParser.json({ limit: "20mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "20mb", extended: true }));
